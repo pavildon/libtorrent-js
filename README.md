@@ -1,7 +1,7 @@
 libtorrent-js
 =============
 
-Relaxed Bindings to some functionality of Rasterbar-Liborrent for NodeJS
+Relaxed Bindings to some functionality of Rasterbar-LibTorrent for NodeJS
 
 
 Building
