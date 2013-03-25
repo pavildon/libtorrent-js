@@ -24,7 +24,7 @@ Example
 
 
 ```js
-r addon = require('../build/Release/torrentjs');
+var addon = require('../build/Release/torrentjs');
 
 var ses = addon.create_session();
 
