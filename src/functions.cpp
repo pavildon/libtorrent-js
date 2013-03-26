@@ -11,8 +11,9 @@
 #include "functions.hpp"
 #include "session.hpp"
 
+using namespace libtorrentjs;
 
-Handle<Object> createObject(libtorrent::lazy_entry const &e) {
+Handle<Object> libtorrentjs::createObject(libtorrent::lazy_entry const &e) {
     
     typedef std::pair<std::string, libtorrent::lazy_entry const *>  pair;
     
@@ -71,7 +72,7 @@ Handle<Object> createObject(libtorrent::lazy_entry const &e) {
     
 }
 
-Handle<Value> bdecode(const Arguments& args) {
+Handle<Value> libtorrentjs::bdecode(const Arguments& args) {
     
     HandleScope scope;
     
@@ -120,7 +121,7 @@ Handle<Value> bdecode(const Arguments& args) {
     
 }
 
-Handle<Value> create_session(const Arguments& args) {
+Handle<Value> libtorrentjs::create_session(const Arguments& args) {
     
     HandleScope scope;
     

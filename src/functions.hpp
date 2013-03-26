@@ -11,10 +11,14 @@
 
 using namespace v8;
 
-Handle<Object> createObject(libtorrent::lazy_entry const &e);
+namespace libtorrentjs {
 
-Handle<Value> bdecode(const Arguments& args);
-
-Handle<Value> create_session(const Arguments& args);
+    Handle<Object> createObject(libtorrent::lazy_entry const &e);
+    
+    Handle<Value> bdecode(const Arguments& args);
+    
+    Handle<Value> create_session(const Arguments& args);
+    
+};
 
 #endif /* defined(__libtorrent_js__functions__) */

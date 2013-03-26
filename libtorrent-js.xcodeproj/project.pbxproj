@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E6861771701283C00F70416 /* event_dispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E6861751701283C00F70416 /* event_dispatcher.cpp */; };
+		3E6861781701283C00F70416 /* event_dispatcher.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E6861761701283C00F70416 /* event_dispatcher.hpp */; };
 		3E9948F016FE4D0C00E50372 /* functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9948EE16FE4D0C00E50372 /* functions.cpp */; };
 		3E9948F116FE4D0C00E50372 /* functions.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9948EF16FE4D0C00E50372 /* functions.hpp */; };
 		3E9948F416FE4E3900E50372 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9948F216FE4E3900E50372 /* session.cpp */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		3E3BD0BC16F8F4DB000B36B3 /* binding.gyp */ = {isa = PBXFileReference; lastKnownFileType = text; path = binding.gyp; sourceTree = "<group>"; };
+		3E6861751701283C00F70416 /* event_dispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = event_dispatcher.cpp; path = src/event_dispatcher.cpp; sourceTree = "<group>"; };
+		3E6861761701283C00F70416 /* event_dispatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = event_dispatcher.hpp; path = src/event_dispatcher.hpp; sourceTree = "<group>"; };
 		3E9948EE16FE4D0C00E50372 /* functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = functions.cpp; path = src/functions.cpp; sourceTree = "<group>"; };
 		3E9948EF16FE4D0C00E50372 /* functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = functions.hpp; path = src/functions.hpp; sourceTree = "<group>"; };
 		3E9948F216FE4E3900E50372 /* session.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = session.cpp; path = src/session.cpp; sourceTree = "<group>"; };
@@ -48,6 +52,7 @@
 		3E9948F616FE60FB00E50372 /* header */ = {
 			isa = PBXGroup;
 			children = (
+				3E6861761701283C00F70416 /* event_dispatcher.hpp */,
 				3E9948F316FE4E3900E50372 /* session.hpp */,
 				3E9948EF16FE4D0C00E50372 /* functions.hpp */,
 				3EA9211616F7453F009A6DBE /* torrentjs.hpp */,
@@ -61,6 +66,7 @@
 				3E9948F216FE4E3900E50372 /* session.cpp */,
 				3E9948EE16FE4D0C00E50372 /* functions.cpp */,
 				3EA9211516F7453F009A6DBE /* torrentjs.cpp */,
+				3E6861751701283C00F70416 /* event_dispatcher.cpp */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -93,6 +99,7 @@
 				3EA9211816F7453F009A6DBE /* torrentjs.hpp in Headers */,
 				3E9948F116FE4D0C00E50372 /* functions.hpp in Headers */,
 				3E9948F516FE4E3900E50372 /* session.hpp in Headers */,
+				3E6861781701283C00F70416 /* event_dispatcher.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +174,7 @@
 				3EECD29116F93F600085A857 /* torrentjs.cpp in Sources */,
 				3E9948F016FE4D0C00E50372 /* functions.cpp in Sources */,
 				3E9948F416FE4E3900E50372 /* session.cpp in Sources */,
+				3E6861771701283C00F70416 /* event_dispatcher.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

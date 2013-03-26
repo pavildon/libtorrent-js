@@ -15,32 +15,44 @@
 #include <v8.h>
 #include <libtorrent/session.hpp>
 
+#include "event_dispatcher.hpp"
+
 using namespace v8;
 
-Local<Value> transform_changed_status( std::vector<libtorrent::torrent_status> const &status);
 
-class Session : public node::ObjectWrap {
+namespace libtorrentjs {
     
-    libtorrent::session _session;
-
-    static v8::Handle<v8::Value> New(const Arguments& args);
-    static Persistent<Function> constructor;
+    Local<Value> transform_changed_status( std::vector<libtorrent::torrent_status> const &status);
     
-    // functions wraping function in the libtorrent session objects
-    
-    static v8::Handle<v8::Value> listen_on(const Arguments& args);
-    static v8::Handle<v8::Value> add_torrent(const Arguments& args);
-    static v8::Handle<v8::Value> post_torrent_updates(const Arguments& args);
-    static v8::Handle<v8::Value> get_alerts(const Arguments& args);
-    
-    
-public:
-
-    static void Init();
-    static v8::Handle<v8::Value> NewInstance(const Arguments& args);
-    
-    Session();
-    ~Session();
+    class Session : public node::ObjectWrap {
+        
+        libtorrent::session _session;
+        
+        event_dispatcher dispatcher;
+        
+        static v8::Handle<v8::Value> New(const Arguments& args);
+        static Persistent<Function> constructor;
+        
+        // functions wraping function in the libtorrent session objects
+        
+        static v8::Handle<v8::Value> listen_on(const Arguments& args);
+        static v8::Handle<v8::Value> add_torrent(const Arguments& args);
+        static v8::Handle<v8::Value> post_torrent_updates(const Arguments& args);
+        static v8::Handle<v8::Value> get_alerts(const Arguments& args);
+        static v8::Handle<v8::Value> on(const Arguments& args);
+        
+        
+    public:
+        
+        
+        
+        static void Init();
+        static v8::Handle<v8::Value> NewInstance(const Arguments& args);
+        
+        Session();
+        ~Session();
+        
+    };
     
 };
 
