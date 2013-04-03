@@ -13,7 +13,7 @@
       'cflags_cc!': [ '-fno-rtti' ],
       "link_settings" : {
           "libraries": [
-	      "-lboost_system",
+	      "/usr/local/lib/libboost_system.a",
               "/usr/local/lib/libtorrent.a"
 	  ]},
       'conditions': [

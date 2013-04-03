@@ -34,12 +34,19 @@ namespace libtorrentjs {
         static Persistent<Function> constructor;
         
         // functions wraping function in the libtorrent session objects
+        static v8::Handle<v8::Value> load_state(const Arguments& args);
+        static v8::Handle<v8::Value> save_state(const Arguments& args);
         
         static v8::Handle<v8::Value> listen_on(const Arguments& args);
         static v8::Handle<v8::Value> add_torrent(const Arguments& args);
         static v8::Handle<v8::Value> post_torrent_updates(const Arguments& args);
         static v8::Handle<v8::Value> get_alerts(const Arguments& args);
         static v8::Handle<v8::Value> on(const Arguments& args);
+        
+        static v8::Handle<v8::Value> start_dht(const Arguments& args);
+        static v8::Handle<v8::Value> stop_dht(const Arguments& args);
+        static v8::Handle<v8::Value> set_dht_settings(const Arguments& args);
+        static v8::Handle<v8::Value> is_dht_running(const Arguments& args);
         
         
     public:

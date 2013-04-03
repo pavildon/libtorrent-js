@@ -15,6 +15,7 @@
 #include <libtorrent/alert_types.hpp>
 
 #include "session.hpp"
+#include "functions.hpp"
 
 using namespace v8;
 using namespace libtorrentjs;
@@ -87,6 +88,27 @@ Handle<Value> Session::NewInstance(const v8::Arguments &args) {
 
 // Lib Torrent functions
 
+
+v8::Handle<v8::Value> Session::load_state(const Arguments& args) {
+    HandleScope scope;
+    
+// TODO: Implement THIS!
+    
+    return scope.Close(args.This());
+    
+}
+
+
+v8::Handle<v8::Value> Session::save_state(const Arguments& args) {
+    
+    HandleScope scope;
+    
+// TODO: Implement THIS!
+    
+    return scope.Close(args.This());
+    
+}
+
 v8::Handle<v8::Value> Session::listen_on(const Arguments& args) {
     
     HandleScope scope;
@@ -114,8 +136,6 @@ v8::Handle<v8::Value> Session::add_torrent(const Arguments& args) {
     HandleScope scope;
     
     Session *s = node::ObjectWrap::Unwrap<Session>(args.This());
-    
-    
     
     if(args[0]->IsString()) {
         
@@ -255,6 +275,59 @@ v8::Handle<v8::Value> Session::on(const Arguments& args) {
     
     return scope.Close(args.This());
 }
+
+
+
+// DHT Functions
+
+v8::Handle<v8::Value> Session::start_dht(const Arguments& args) {
+    
+    HandleScope scope;
+    
+    Session *s = node::ObjectWrap::Unwrap<Session>(args.This());
+    
+    s->_session.start_dht();
+    
+    return scope.Close(args.This());
+}
+
+v8::Handle<v8::Value> Session::stop_dht(const v8::Arguments &args) {
+    
+    HandleScope scope;
+    
+    Session *s = node::ObjectWrap::Unwrap<Session>(args.This());
+    
+    s->_session.stop_dht();
+    
+    return scope.Close(args.This());
+}
+
+v8::Handle<v8::Value> Session::set_dht_settings(const v8::Arguments &args) {
+    
+    HandleScope scope;
+    
+    Session *s = node::ObjectWrap::Unwrap<Session>(args.This());
+    
+    libtorrent::dht_settings dht_settings = js_to_dht_settings(args[0]);
+    
+    s->_session.set_dht_settings(dht_settings);
+    
+    return scope.Close(args.This());
+}
+
+v8::Handle<v8::Value> Session::is_dht_running(const Arguments& args) {
+    
+    HandleScope scope;
+    
+    Session *s = node::ObjectWrap::Unwrap<Session>(args.This());
+
+    bool is = s->_session.is_dht_running();
+    
+    Handle<Boolean> ret(Boolean::New(is));
+    
+    return scope.Close(ret);
+}
+
 
 
 

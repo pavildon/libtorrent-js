@@ -3,7 +3,6 @@ var addon = require('../build/Release/torrentjs');
 var ses = addon.create_session();
 
 ses.add_torrent('ubuntu.torrent');
-ses.add_torrent('linuxmint-14.1-mate-dvd-32bit.iso.torrent');
 ses.on('state_update_alert', on_state_change);
  
 function on_state_change(status) {

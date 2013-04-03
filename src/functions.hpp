@@ -8,6 +8,7 @@
 
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/lazy_entry.hpp>
+#include <libtorrent/session.hpp>
 
 using namespace v8;
 
@@ -18,6 +19,8 @@ namespace libtorrentjs {
     Handle<Value> bdecode(const Arguments& args);
     
     Handle<Value> create_session(const Arguments& args);
+    
+    libtorrent::dht_settings js_to_dht_settings(const Local<Value> &obj);
     
 };
 

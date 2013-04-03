@@ -58,7 +58,7 @@ Handle<Object> libtorrentjs::createObject(libtorrent::lazy_entry const &e) {
             default:
                 break;
         }
-        
+
         if (e.type() == libtorrent::lazy_entry::dict_t) {
             hashmap->Set(String::New(e.dict_at(i).first.c_str()), v);
             
@@ -130,4 +130,40 @@ Handle<Value> libtorrentjs::create_session(const Arguments& args) {
     
 }
 
+
+libtorrent::dht_settings libtorrentjs::js_to_dht_settings(const Local<Value> &obj) {
+
+    libtorrent::dht_settings settings;
+    
+    if(!obj->IsObject()) {
+        return settings;
+    }
+   
+    if(!obj->ToObject()->Get(String::New("max_peers_reply"))->IsUndefined()) {
+        settings.max_peers_reply = obj->ToObject()->Get(String::New("max_peers_reply"))->Int32Value();
+    }
+    
+    if(!obj->ToObject()->Get(String::New("search_branching"))->IsUndefined()) {
+        settings.search_branching = obj->ToObject()->Get(String::New("search_branching"))->Int32Value();
+    }
+    
+    if(!obj->ToObject()->Get(String::New("max_fail_count"))->IsUndefined()) {
+        settings.max_fail_count = obj->ToObject()->Get(String::New("max_fail_count"))->Int32Value();
+    }
+    
+    if(!obj->ToObject()->Get(String::New("max_torrents"))->IsUndefined()) {
+        settings.max_torrents = obj->ToObject()->Get(String::New("max_torrents"))->Int32Value();
+    }
+    
+    if(!obj->ToObject()->Get(String::New("restrict_routing_ips"))->IsUndefined()) {
+        settings.restrict_routing_ips = obj->ToObject()->Get(String::New("restrict_routing_ips"))->BooleanValue();
+    }
+    
+    if(!obj->ToObject()->Get(String::New("restrict_search_ips"))->IsUndefined()) {
+        settings.restrict_search_ips = obj->ToObject()->Get(String::New("restrict_search_ips"))->BooleanValue();
+    }
+    
+    return settings;
+    
+}
 
