@@ -52,6 +52,8 @@ timeoutfunc();
 
 ```
 
+more examples at [a test folder](https://github.com/aindigo/libtorrent-js/tree/master/test)
+
 TODO
 ====
 
