@@ -38,7 +38,7 @@ void Session::Init()
     
     Local<FunctionTemplate> tpl = FunctionTemplate::New(New);
     tpl->SetClassName(String::NewSymbol("Session"));
-    tpl->InstanceTemplate()->SetInternalFieldCount(5);
+    tpl->InstanceTemplate()->SetInternalFieldCount(10);
     
     // functions
     
@@ -57,6 +57,20 @@ void Session::Init()
     tpl->PrototypeTemplate()->Set(String::NewSymbol("on"),
                                   FunctionTemplate::New(on)->GetFunction());
     
+    tpl->PrototypeTemplate()->Set(String::NewSymbol("start_dht"),
+                                  FunctionTemplate::New(start_dht)->GetFunction());
+    
+    tpl->PrototypeTemplate()->Set(String::NewSymbol("stop_dht"),
+                                  FunctionTemplate::New(stop_dht)->GetFunction());
+    
+    tpl->PrototypeTemplate()->Set(String::NewSymbol("set_dht_settings"),
+                                  FunctionTemplate::New(set_dht_settings)->GetFunction());
+    
+    tpl->PrototypeTemplate()->Set(String::NewSymbol("is_dht_running"),
+                                  FunctionTemplate::New(is_dht_running)->GetFunction());
+    
+    tpl->PrototypeTemplate()->Set(String::NewSymbol("add_dht_router"),
+                                  FunctionTemplate::New(add_dht_router)->GetFunction());
     
     constructor = Persistent<Function>::New(tpl->GetFunction());
     
@@ -121,7 +135,9 @@ v8::Handle<v8::Value> Session::listen_on(const Arguments& args) {
     if (args[0]->IsNumber() && args[1]->IsNumber()) {
         port_pair = std::make_pair(args[0]->NumberValue(), args[1]->NumberValue());
     }
-    s->_session.set_alert_mask(libtorrent::alert::error_notification | libtorrent::alert::status_notification );
+    s->_session.set_alert_mask(libtorrent::alert::dht_notification
+                               | libtorrent::alert::error_notification
+                               | libtorrent::alert::status_notification );
     
     s->_session.listen_on(port_pair, ec);
     
@@ -328,7 +344,23 @@ v8::Handle<v8::Value> Session::is_dht_running(const Arguments& args) {
     return scope.Close(ret);
 }
 
-
+v8::Handle<v8::Value> Session::add_dht_router(const Arguments& args) {
+    
+    HandleScope scope;
+    
+    Session *s = node::ObjectWrap::Unwrap<Session>(args.This());
+    
+    if(args[0]->IsString() && args[1]->IsNumber()) {
+        String::Utf8Value host(args[0]->ToString());
+        std::string sh = std::string(*host);
+        std::pair<std::string, int> pair = std::make_pair(sh, args[1]->Int32Value());
+        
+        s->_session.add_dht_router(pair);
+        
+    }
+    
+    return scope.Close(args.This());
+}
 
 
 

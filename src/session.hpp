@@ -22,8 +22,6 @@ using namespace v8;
 
 namespace libtorrentjs {
     
-    Local<Value> transform_changed_status( std::vector<libtorrent::torrent_status> const &status);
-    
     class Session : public node::ObjectWrap {
         
         libtorrent::session _session;
@@ -47,6 +45,9 @@ namespace libtorrentjs {
         static v8::Handle<v8::Value> stop_dht(const Arguments& args);
         static v8::Handle<v8::Value> set_dht_settings(const Arguments& args);
         static v8::Handle<v8::Value> is_dht_running(const Arguments& args);
+        
+        static v8::Handle<v8::Value> add_dht_router(const Arguments& args);
+
         
         
     public:

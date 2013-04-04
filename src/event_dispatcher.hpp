@@ -25,8 +25,13 @@ using namespace v8;
 namespace libtorrentjs {
     
     Local<Value> transform_changed_status( std::vector<libtorrent::torrent_status> const &status);
+    Local<Object> transform_tracker_alert(libtorrent::tracker_alert const &alert);
     
-    // this huge piece of garbage was generated with ake_alert_functions.js located in util/
+    Local<Value> transform_dht_announce(libtorrent::dht_announce_alert const &alert);
+    Local<Value> transform_dht_get_peers(libtorrent::dht_get_peers_alert const &alert);
+    Local<Value> transform_dht_reply(libtorrent::dht_reply_alert const &alert);
+    
+    // this huge piece of garbage was generated with make_alert_functions.js located in util/
     
     struct event_dispatcher {
         
@@ -532,7 +537,8 @@ namespace libtorrentjs {
             Local<Value> v = callback_object->Get(String::New("dht_announce_alert"));
             if(v->IsUndefined()) return;
             Local<Function> cb = Local<Function>::Cast(v);
-            cb->Call(Context::GetCurrent()->Global(),0, NULL); // modify this!
+            Local<Value> obj[1] = { transform_dht_announce(a) };
+            cb->Call(Context::GetCurrent()->Global(),1, obj);
         }
         
         
@@ -541,7 +547,8 @@ namespace libtorrentjs {
             Local<Value> v = callback_object->Get(String::New("dht_get_peers_alert"));
             if(v->IsUndefined()) return;
             Local<Function> cb = Local<Function>::Cast(v);
-            cb->Call(Context::GetCurrent()->Global(),0, NULL); // modify this!
+            Local<Value> obj[1] = { transform_dht_get_peers(a) };
+            cb->Call(Context::GetCurrent()->Global(),1, obj);
         }
         
         
@@ -550,16 +557,20 @@ namespace libtorrentjs {
             Local<Value> v = callback_object->Get(String::New("dht_reply_alert"));
             if(v->IsUndefined()) return;
             Local<Function> cb = Local<Function>::Cast(v);
-            cb->Call(Context::GetCurrent()->Global(),0, NULL); // modify this!
+            Local<Value> obj[1] = { transform_dht_reply(a) };
+            cb->Call(Context::GetCurrent()->Global(),1, obj);
         }
         
         
         void operator()(libtorrent::dht_bootstrap_alert const& a) const 
-        { 
+        {
+            
             Local<Value> v = callback_object->Get(String::New("dht_bootstrap_alert"));
             if(v->IsUndefined()) return;
             Local<Function> cb = Local<Function>::Cast(v);
-            cb->Call(Context::GetCurrent()->Global(),0, NULL); // modify this!
+            Local<Value> obj[0] = { };
+            cb->Call(Context::GetCurrent()->Global(), 0, obj);
+            
         }
         
         
