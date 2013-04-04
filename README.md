@@ -58,3 +58,5 @@ TODO
 ====
 
 as you can see theres A LOT to do
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/c20b02d538d55593d3db0c459594d228 "githalytics.com")](http://githalytics.com/aindigo/libtorrent-js)
